@@ -1,0 +1,81 @@
+# CreativeItemBan 配置文件
+# 版本: 2.1 - 支持创模加强模式和违规监控
+
+debug: true  # 改成true开启调试模式
+
+# 创造模式禁止物品配置
+creative-banned:
+  items:
+    - "TNT"
+    - "LAVA_BUCKET"
+    - "END_CRYSTAL"
+    - "DIAMOND_SWORD"
+
+# give命令禁止物品配置
+# 注意：give命令使用minecraft:命名空间格式
+give-banned:
+  items:
+    - "minecraft:tnt"
+    - "minecraft:lava_bucket"  
+    - "minecraft:end_crystal"
+    - "minecraft:diamond_sword"
+
+# 创模加强模式配置
+creative-protection:
+  # 总开关
+  enabled: true
+  
+  # 放置限制配置
+  place-ban:
+    enabled: true  # 禁止放置禁品
+    
+  # 潜影盒处理配置
+  shulker:
+    check-on-place: true  # 放置潜影盒时检查内容
+    action: "cancel"  # 可选: cancel(取消), sanitize(清理), log-only(仅记录)
+    
+  # 物品栏操作配置
+  inventory:
+    block-middle-clone: true  # 禁止中键克隆
+    block-move-to-containers: true  # 禁止将禁品移入容器
+    
+  # 生命周期配置
+  lifecycle:
+    clear-on-creative-switch: false  # 切换创模时清理禁品(可选)
+    
+  # 违规监控配置
+  violation-monitoring:
+    enabled: true  # 是否启用违规监控
+    time-window: 300  # 时间窗口（秒），默认5分钟（300秒）
+    warning-threshold: 10  # 警告阈值，5分钟内违规超过10次会警告
+    clear-threshold: 20  # 清空物品阈值，5分钟内违规超过20次会清空违禁物品
+    bypass-permission: "creativeitemban.bypass.violation"  # 绕过违规监控的权限
+
+# 权限配置
+permissions:
+  creative-bypass: "creativeitemban.bypass.creative"
+  give-bypass: "creativeitemban.bypass.give"
+  # 创模加强模式细分权限
+  creative-protection:
+    place-bypass: "creativeitemban.bypass.place"
+    shulker-bypass: "creativeitemban.bypass.shulker"
+    clone-bypass: "creativeitemban.bypass.clone"
+    container-bypass: "creativeitemban.bypass.container"
+    lifecycle-bypass: "creativeitemban.bypass.lifecycle"
+
+# 消息配置
+messages:
+  creative-blocked: "&c这个物品在创造模式中被禁止！"
+  give-blocked: "&c你不能通过give命令获取这个物品！"
+  bypass-enabled: "&a你拥有权限，可以获取禁止物品"
+  no-permission: "&c你没有权限使用这个命令！"
+  # 创模加强模式消息
+  creative-place-blocked: "&c你不能在创造模式放置这个物品！"
+  shulker-blocked: "&c这个潜影盒含有禁止物品，无法放置！"
+  shulker-sanitized: "&a潜影盒中的禁止物品已被清理。"
+  clone-blocked: "&c你不能在创造模式克隆这个物品！"
+  container-move-blocked: "&c你不能在创造模式将禁止物品放入容器！"
+  cleaned-on-switch: "&a切换到创造模式时，你的物品栏中的禁止物品已被清理。"
+  # 违规监控消息
+  violation-warning: "&e[警告] 你短时间内尝试了太多违禁操作！当前已违规&c%violations%&e次（5分钟内）。若继续，违禁物品将被清除！"
+  violation-clear-items: "&c[处罚] 你短时间内多次违规，已清空所有违禁物品！共违规%total_violations%次（5分钟内）。"

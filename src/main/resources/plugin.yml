@@ -1,0 +1,47 @@
+name: CreativeItemBan
+version: 2.1
+main: com.example.CreativeItemBan
+api-version: "1.20"
+description: 禁止创造模式玩家获取特定物品，并与give命令联动；新增创模加强模式拦截放置/潜影盒/容器搬运/中键克隆
+author: YourNameHere
+
+# 权限定义
+permissions:
+  creativeitemban.admin:
+    description: 管理员权限
+    default: op
+  creativeitemban.view:
+    description: 查看权限
+    default: op
+  creativeitemban.bypass:
+    description: 绕过所有限制
+    default: op
+  creativeitemban.bypass.creative:
+    description: 绕过创造模式限制
+    default: op
+  creativeitemban.bypass.give:
+    description: 绕过give命令限制
+    default: op
+  creativeitemban.bypass.place:
+    description: 绕过创造模式放置禁品的限制
+    default: op
+  creativeitemban.bypass.shulker:
+    description: 绕过潜影盒检查限制
+    default: op
+  creativeitemban.bypass.clone:
+    description: 绕过中键克隆限制
+    default: op
+  creativeitemban.bypass.container:
+    description: 绕过容器搬运限制
+    default: op
+  creativeitemban.bypass.lifecycle:
+    description: 绕过切换创模清理限制
+    default: op
+
+# 命令定义
+commands:
+  creativeitemban:
+    description: 插件主命令
+    usage: /<command> <reload|status|list|debug|version|help>
+    aliases: [cib, citemban]
+    permission: creativeitemban.admin

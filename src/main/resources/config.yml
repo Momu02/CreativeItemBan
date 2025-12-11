@@ -1,0 +1,100 @@
+# CreativeItemBan 配置文件
+# 版本：2.1
+
+# 创造模式物品禁止配置
+creative-banned:
+  # 在创造模式中被禁止获取/放置的物品列表
+  # 格式：物品ID（大写，不带"minecraft:"前缀）
+  items:
+    - TNT
+    - BEDROCK
+    - BARRIER
+    - COMMAND_BLOCK
+    - CHAIN_COMMAND_BLOCK
+    - REPEATING_COMMAND_BLOCK
+    - STRUCTURE_BLOCK
+    - STRUCTURE_VOID
+    - JIGSAW
+    - LIGHT
+    - DRAGON_EGG
+    - END_PORTAL_FRAME
+    - SPAWNER
+    # 示例：粗铜、粗铜块（如需启用请取消注释）
+    # - RAW_COPPER
+    # - RAW_COPPER_BLOCK
+
+# Give命令物品禁止配置
+give-banned:
+  # 在give命令中被禁止的物品列表  
+  # 格式：可以是物品ID（大写）或带命名空间的物品ID（如"minecraft:tnt"）
+  items:
+    - minecraft:tnt
+    - minecraft:bedrock
+    - minecraft:barrier
+    - minecraft:command_block
+    - minecraft:chain_command_block
+    - minecraft:repeating_command_block
+    - minecraft:structure_block
+    - minecraft:structure_void
+    - minecraft:jigsaw
+    - minecraft:light
+    - minecraft:dragon_egg
+    - minecraft:end_portal_frame
+    - minecraft:spawner
+    # 示例：粗铜、粗铜块（如需启用请取消注释或改为minecraft命名空间）
+    # - minecraft:raw_copper
+    # - minecraft:raw_copper_block
+
+# 创模加强模式（仅创模生效，不影响生存）
+creative-protection:
+  enabled: true
+  place-ban: true                      # 创造模式禁止放置被禁物品
+  shulker:
+    check-on-place: true               # 放置潜影盒时检查内部是否含被禁物品
+    action: cancel                     # cancel | sanitize | log-only
+  inventory:
+    block-move-to-containers: true     # 创造模式禁止将被禁物品移入容器（箱子/潜影盒等）
+    block-middle-clone: true           # 创造模式禁止中键克隆禁品或含禁品的潜影盒
+  lifecycle:
+    clear-on-creative-switch: false    # 切换到创造模式时清理被禁物品（可选）
+  
+  # 违规监控配置 - 监控玩家在短时间内多次违禁操作
+  violation-monitoring:
+    enabled: true                       # 是否启用违规监控
+    time-window: 300                    # 时间窗口（秒），默认300秒（5分钟）
+    warning-threshold: 10               # 警告阈值，达到此值时发送警告
+    clear-threshold: 20                 # 清空阈值，达到此值时清空违禁物品
+    bypass-permission: "creativeitemban.bypass.violation"  # 绕过违规监控的权限
+
+# 权限配置
+permissions:
+  # 白名单权限组
+  # 拥有这些权限的玩家不受限制
+  bypass-permissions:
+    - creativeitemban.bypass
+    - creativeitemban.bypass.creative
+    - creativeitemban.bypass.give
+  
+  # 创造模式绕过权限
+  creative-bypass: "creativeitemban.bypass.creative"
+  
+  # Give命令绕过权限
+  give-bypass: "creativeitemban.bypass.give"
+
+# 消息配置
+messages:
+  creative-blocked: "&c这个物品在创造模式中被禁止获取"
+  give-blocked: "&c这个物品无法通过give命令获取"
+  bypass-enabled: "&a你拥有权限，可以获取禁止物品"
+  reload-success: "&a配置文件已重新加载"
+  creative-place-blocked: "&c该物品在创造模式下禁止放置"
+  shulker-blocked: "&c该潜影盒包含被禁止物品，无法放置"
+  shulker-sanitized: "&e潜影盒中的被禁物品已清理，允许放置"
+  clone-blocked: "&c创造模式下禁止复制该物品"
+  container-move-blocked: "&c不可将被禁止物品移动至容器"
+  cleaned-on-switch: "&e已在切换至创造模式时清理被禁物品"
+  violation-warning: "&e[警告] 你短时间内尝试了太多违禁操作！当前已违规&c%violations%&e次（5分钟内）。若继续，违禁物品将被清除！"
+  violation-clear-items: "&c[处罚] 你短时间内多次违规，已清空所有违禁物品！共违规%total_violations%次（5分钟内）。"
+
+# 调试模式（生产环境建议关闭）
+debug: false

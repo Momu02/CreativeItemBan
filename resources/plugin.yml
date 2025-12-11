@@ -1,0 +1,39 @@
+name: CreativeItemBan
+main: com.example.CreativeItemBan
+version: 1.0
+api-version: "1.20"
+description: 禁止创造模式和give命令获取特定物品
+author: YourName
+website: https://example.com
+
+# 权限定义
+permissions:
+  creativeitemban.admin:
+    description: 管理CreativeItemBan插件
+    default: op
+    children:
+      creativeitemban.view: true
+  
+  creativeitemban.view:
+    description: 查看插件信息
+    default: false
+  
+  creativeitemban.bypass:
+    description: 完整绕过所有限制
+    default: op
+  creativeitemban.bypass.creative:
+    description: 绕过创造模式限制
+    default: false
+  
+  creativeitemban.bypass.give:
+    description: 绕过give命令限制
+    default: false
+
+# 命令定义
+commands:
+  creativeitemban:
+    description: 管理CreativeItemBan插件
+    usage: /<command> <reload|status|list|debug>
+    aliases: [cib]
+    permission: creativeitemban.admin
+    permission-message: "§c你没有权限使用这个命令。"
