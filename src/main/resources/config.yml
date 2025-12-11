@@ -1,0 +1,64 @@
+# CreativeItemBan 配置文件
+# 版本：2.0
+
+# 创造模式物品禁止配置
+creative-banned:
+  # 在创造模式中被禁止获取的物品列表
+  # 格式：物品ID（大写，不带"minecraft:"前缀）
+  items:
+    - TNT
+    - BEDROCK
+    - BARRIER
+    - COMMAND_BLOCK
+    - CHAIN_COMMAND_BLOCK
+    - REPEATING_COMMAND_BLOCK
+    - STRUCTURE_BLOCK
+    - STRUCTURE_VOID
+    - JIGSAW
+    - LIGHT
+    - DRAGON_EGG
+    - END_PORTAL_FRAME
+    - SPAWNER
+
+# Give命令物品禁止配置
+give-banned:
+  # 在give命令中被禁止的物品列表  
+  # 格式：可以是物品ID（大写）或带命名空间的物品ID（如"minecraft:tnt"）
+  items:
+    - minecraft:tnt
+    - minecraft:bedrock
+    - minecraft:barrier
+    - minecraft:command_block
+    - minecraft:chain_command_block
+    - minecraft:repeating_command_block
+    - minecraft:structure_block
+    - minecraft:structure_void
+    - minecraft:jigsaw
+    - minecraft:light
+    - minecraft:dragon_egg
+    - minecraft:end_portal_frame
+    - minecraft:spawner
+
+# 权限配置
+permissions:
+  # 白名单权限组
+  # 拥有这些权限的玩家不受限制
+  bypass-permissions:
+    - creativeitemban.bypass
+    - creativeitemban.bypass.creative
+    - creativeitemban.bypass.give
+  
+  # 创造模式绕过权限
+  creative-bypass: "creativeitemban.bypass.creative"
+  
+  # Give命令绕过权限
+  give-bypass: "creativeitemban.bypass.give"
+# 消息配置
+messages:
+  creative-blocked: "&c这个物品在创造模式中被禁止获取"
+  give-blocked: "&c这个物品无法通过give命令获取"
+  bypass-enabled: "&a你拥有权限，可以获取禁止物品"
+  reload-success: "&a配置文件已重新加载"
+
+# 调试模式（生产环境建议关闭）
+debug: false

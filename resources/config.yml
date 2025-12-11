@@ -1,0 +1,33 @@
+# CreativeItemBan 配置文件
+# 版本: 2.0 - 支持双模式配置和权限系统集成
+
+debug: true  # 改成true开启调试模式
+
+# 创造模式禁止物品配置
+creative-banned:
+  items:
+    - "TNT"
+    - "LAVA_BUCKET"
+    - "END_CRYSTAL"
+    - "DIAMOND_SWORD"
+
+# give命令禁止物品配置
+# 注意：give命令使用minecraft:命名空间格式
+give-banned:
+  items:
+    - "minecraft:tnt"
+    - "minecraft:lava_bucket"  
+    - "minecraft:end_crystal"
+    - "minecraft:diamond_sword"
+
+# 权限配置
+permissions:
+  creative-bypass: "creativeitemban.bypass.creative"
+  give-bypass: "creativeitemban.bypass.give"
+
+# 消息配置
+messages:
+  creative-blocked: "&c这个物品在创造模式中被禁止！"
+  give-blocked: "&c你不能通过give命令获取这个物品！"
+  bypass-enabled: "&a你拥有权限，可以获取禁止物品"
+  no-permission: "&c你没有权限使用这个命令！"
